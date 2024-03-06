@@ -1,1 +1,0 @@
-This project is usable only within the DLR and within Project [Digitaler Atlas 2.0](https://verkehrsforschung.dlr.de/de/projekte/digitaler-atlas-20-domaenenuebergreifende-softwareanwendungen-und-geodateninfrastrukturen).

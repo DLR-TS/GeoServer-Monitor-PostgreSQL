@@ -16,7 +16,9 @@ based on [CRediT (Contributor Roles Taxonomy)](https://credit.niso.org/)
 
 The [official Monitor Plugin](https://docs.geoserver.org/latest/en/user/extensions/monitoring/index.html) of the GeoServer allows only one method of storing the metrics on the requests received by the GeoServer - memory storage. This storage is volatile and information is lost when the GeoServer is restarted. Furthermore, it stores metrics only for the latest 100 requests. This is insufficient for GeoServers in productive environments receiving hundreds of requests everyday.  
 
-The GeoServer Monitor PostgreSQL plugin aims to overcome this limitation by persisting the metrics in a PostgreSQL database. The persistent storage of metrics enables the administrators of the GeoServer to analyze the performance of their GeoServer layers and optimize their services.
+The GeoServer Monitor PostgreSQL plugin aims to overcome this limitation by persisting the metrics in a PostgreSQL database. The persistent storage of metrics enables the administrators of the GeoServer to analyze the performance of their GeoServer layers and optimize their services.  
+
+The GeoServer also contains a community module called `monitor-hibernate`([link](https://github.com/geoserver/geoserver/tree/main/src/community/monitor-hibernate)) which has been unmaintained for more than 5 years and is not available for the latest releases of the GeoServer. When compared with this module, the Monitor PostgreSQL module offers a simpler approach to write records to the database through the use of built-in Java functionalities and [PostgreSQL JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql) library. Lesser dependency on external modules makes this extension easy to maintain and update.
 
 
 ## Prerequisites
@@ -68,6 +70,7 @@ The metrics written to the database are listed in the table 1.
 ## Known limitations
 
 * The plugin was installed in a GeoServer managed by the [DLR Institute of Transportation Systems](https://www.dlr.de/ts/en/desktopdefault.aspx/) and tested for one year. During the testing period, when the frequency of requests was high, it was observed that I/O errors occasionally occured (`org.postgresql.util.PSQLException: An I/O error occurred while sending to the backend`). This error showed up once for every 40-50 requests. Its occurrence is unpredictable and not fixed yet. It is suspected that the error is occurring due to a bug in `java.sql` library. It could also be due to the fact that the plugin establishes a new database connection for every request received by the GeoServer, which could be causing problems when the frequency of requests is high. This issue is being investigated.
+* If the configuration file `monitor.properties` is changed when the GeoServer is still running, it might cause unexpected errors. The safest way is to always stop the GeoServer before making changes in the configuration file.
 
 ## Contribution
 
@@ -84,10 +87,13 @@ The Monitor plugin records several more metrics in addition to those persisted b
 
 ## License
 
-TODO
+GNU General Public License v3.0. See [LICENSE](LICENSE).
 
 ## Funding
 
 The development of this plugin is being funded by the DLR-funded cross-domain project, "[Digitaler Atlas 2.0](https://verkehrsforschung.dlr.de/de/projekte/digitaler-atlas-20-domaenenuebergreifende-softwareanwendungen-und-geodateninfrastrukturen)" (2022-2025). After the end of this project, the plugin is intended to be improved and maintained over other DLR-funded projects.
+
+## Contact
+* Sangeetha Shankar, German Aerospace Center (DLR). Email: Sangeetha.Shankar@dlr.de
 
 
