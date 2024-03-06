@@ -39,8 +39,6 @@ Note: The plugin has been tested with the following versions of GeoServer - 2.19
 7. Create a new table in your PostgreSQL database to store the request information. DDL statements are present in `create_tables.sql`.
 8. Restart the GeoServer.
 
-Alternatively, prebuilt JARs for some versions of the GeoServer are available in this repository under tags. 
-
 ## Working
 
 Figure 1 shows the working of GeoServer Monitor PostgreSQL Plugin. Whenever GeoServer receives a request, the Monitor plugin generates the metrics related to that request. These are forwared to the GeoServer Monitor PostgreSQL plugin, which in turn stores these metrics to a database. The metrics are stored after the request is post-processed.
