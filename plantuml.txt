@@ -1,0 +1,18 @@
+@startuml
+
+skinparam linetype polyline
+
+component Client
+package GeoServer {
+	component "Monitor Plugin" as mp
+	component "GeoServer Monitor PostgreSQL Plugin" as gmpp
+}
+package "PostgreSQL Database" {
+	component "table 'geoserver_request_info'" as table
+}
+
+Client -> GeoServer : "sends a request"
+mp --> gmpp : " forwards request metrics"
+gmpp -> table : "after post processing:\n   writes metrics to database     "
+
+@enduml

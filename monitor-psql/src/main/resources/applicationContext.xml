@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="psqlMonitorInitializer" class="org.geoserver.monitor.monitorPsql.PsqlMonitorInitializer">
+      <constructor-arg ref="monitor"/>
+    </bean>
+    
+	<bean id="psqlMonitorDAO" class="org.geoserver.monitor.monitorPsql.PsqlMonitorDAO"/>
+	
+    <bean id="psqlLogger" class="org.geoserver.monitor.monitorPsql.PsqlLogger">
+		<constructor-arg ref="monitorConfig" index="0"/>
+	</bean>
+	
+	<bean id="MonitorPsqlExtension" class="org.geoserver.platform.ModuleStatusImpl">
+		<property name="module" value="gs-monitor-psql" />
+		<property name="name" value="Monitor PostgreSQL Extension" />
+		<property name="component" value="Monitor PostgreSQL plugin" />
+		<property name="available" value="true" />
+		<property name="enabled" value="true" />
+	</bean>
+</beans>

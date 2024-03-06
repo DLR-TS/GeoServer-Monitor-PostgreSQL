@@ -1,0 +1,18 @@
+## CHANGELOG ##
+All notable changes to this project will be documented in this file. (Added | Changed | Fixed | Unreleased | Breaking)
+
+## 1.0.2 - 2024-01-05
+### Changed 
+* enabling of this plugin is checked on Geoserver startup
+* gs_id column has been removed from postgresql table
+* some logs are visible only upon switching to verbose logging
+
+## 1.0.1 - 2023-09-20
+### Added
+* method to convert RequestData object to string
+
+### Changed
+* improved logging
+* switched to Java 11
+* switched to newest version of org.postgresql package
+

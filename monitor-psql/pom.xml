@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>org.geoserver.monitor</groupId>
+  <artifactId>monitor-psql</artifactId>
+  <version>1.0.2_2.23.x</version><!-- change to your GeoServer version -->
+  <packaging>jar</packaging>
+
+  <name>monitorPsql</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <gt.version>27.2</gt.version><!-- change to your GeoTools version -->
+    <gs.version>2.23.4</gs.version><!-- change to your GeoServer version -->
+    <pg.jdbc.version>42.6.0</pg.jdbc.version>
+  </properties>
+
+  <dependencies>
+	<dependency>
+	  <groupId>org.geotools</groupId>
+	  <artifactId>gt-process</artifactId>
+	  <version>${gt.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.geoserver</groupId>
+	  <artifactId>gs-main</artifactId>
+	  <version>${gs.version}</version>
+	</dependency>
+	<dependency>
+      <groupId>org.geoserver.extension</groupId>
+      <artifactId>gs-monitor-core</artifactId>
+      <version>${gs.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>junit</groupId>
+	  <artifactId>junit</artifactId>
+	  <version>3.8.1</version>
+	  <scope>test</scope>
+	</dependency>
+	<dependency>
+	  <groupId>org.postgresql</groupId>
+	  <artifactId>postgresql</artifactId>
+	  <version>${pg.jdbc.version}</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>11</source> <!-- change java version, if necessary -->
+          <target>11</target> <!-- change java version, if necessary -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <repositories>
+        <repository>
+            <id>boundless</id>
+            <name>Boundless Maven Repository</name>
+            <url>https://repo.boundlessgeo.com/main</url>
+        </repository>
+        <repository>
+            <id>osgeo</id>
+            <name>Open Source Geospatial Foundation Repository</name>
+            <url>https://repo.osgeo.org/repository/release/</url>
+        </repository>
+    </repositories>
+  
+</project>
