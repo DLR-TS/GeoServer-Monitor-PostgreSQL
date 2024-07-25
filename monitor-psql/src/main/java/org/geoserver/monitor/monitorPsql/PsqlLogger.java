@@ -60,10 +60,25 @@ public class PsqlLogger implements RequestDataListener, ApplicationListener<Appl
 
         // connect to database
         try {
-            url = props.getProperty("postgres.host");
+            if (System.getenv("POSTGRESQL_LOGGING_URL") != null) {
+        		url = System.getenv("POSTGRESQL_LOGGING_URL");
+            } else {
+                url = props.getProperty("postgres.host");
+	    }
             conn_prop = new Properties();
-            conn_prop.setProperty("user", props.getProperty("postgres.user"));
-            conn_prop.setProperty("password", props.getProperty("postgres.password"));
+            
+            if (System.getenv("POSTGRESQL_LOGGING_USER") != null) {
+                conn_prop.setProperty("user", System.getenv("POSTGRESQL_LOGGING_USER"));
+            } else {
+                conn_prop.setProperty("user", props.getProperty("postgres.user"));
+            }
+            
+            if (System.getenv("POSTGRESQL_LOGGING_PASSWORD") != null) {
+            	conn_prop.setProperty("password", System.getenv("POSTGRESQL_LOGGING_PASSWORD"));
+            } else {
+            	conn_prop.setProperty("password", props.getProperty("postgres.password"));
+            }
+            
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error while reading database connection params", e);
             return false;
